@@ -9,7 +9,6 @@ exports.__esModule = true;
 exports.ClientCreateComponent = void 0;
 var core_1 = require("@angular/core");
 var uuid_1 = require("uuid");
-var ClientFunctions_1 = require("../../../functions/Client/ClientFunctions");
 var ClientCreateComponent = /** @class */ (function () {
     function ClientCreateComponent(router, clientService) {
         this.router = router;
@@ -20,8 +19,18 @@ var ClientCreateComponent = /** @class */ (function () {
     ClientCreateComponent.prototype.ngOnInit = function () {
     };
     ClientCreateComponent.prototype.save = function (client) {
+        var _this = this;
         if (client.nombre) {
-            ClientFunctions_1.CreateClient(client, this.clientService, this.router, this.auxPase1);
+            this.clientService
+                .registerNewClient(client)
+                .subscribe(function (result) {
+                if (result.status == 201) {
+                    _this.router.navigate(['/clients/list-client']);
+                }
+            }, function (err) {
+                _this.auxPase1 = uuid_1.v4();
+                // console.warn(err);
+            });
         }
     };
     ClientCreateComponent = __decorate([

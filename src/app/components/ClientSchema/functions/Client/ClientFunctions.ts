@@ -29,24 +29,6 @@ export function GetParamsClients(callClass:string = "",optionsClient: ClientsPag
     
   }
 
-  export function CreateClient(client: CreateClientCommand, clientService: ClientService, router: Router, auxPase1:any){
-
-    clientService
-      .registerNewClient(
-        client
-      )
-      .subscribe((result: HttpResponse<any>) => {
-        if (result.status == 201) {
-
-          router.navigate(['/clients/list-client']);
-
-        }
-      }, (err: HttpErrorResponse) => {
-        auxPase1 = uuidv4();
-        // console.warn(err);
-      });
-  }
-
   
   export function GetClients(clientService: ClientService, optionsClient: OptionsClient, utilsService:UtilsService){
     GetClientsDb(clientService,optionsClient,utilsService,"GetAll");

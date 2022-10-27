@@ -3,7 +3,6 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { CreatePlanAhorro } from 'src/app/components/BankSchema/functions/PlanAhorro/PlanAhorroFunctions';
 import { CreatePlanAhorroCommand } from 'src/app/components/BankSchema/models/Bill/commands/create-plan-ahorro-command';
 import { OptionsBill } from 'src/app/components/BankSchema/models/Bill/options-bill';
 import { PlanAhorroVm } from 'src/app/components/BankSchema/models/Bill/queries/plan-ahorro-vm';
@@ -110,7 +109,20 @@ ngOnChanges(changes: SimpleChanges): void {
     this.ahorroCuenta.clientRef = this.clientDto.id;
     console.log(this.ahorroCuenta)
     if (this.ahorroCuenta.clientRef && this.ahorroCuenta.montoDeAhorro > 99) {
-      CreatePlanAhorro(this.ahorroCuenta, this.planAhorroService, this.router, this.auxPase1);
+      this.planAhorroService
+      .registerNewPlanAhorro(
+        this.ahorroCuenta
+      )
+      .subscribe((result: HttpResponse<any>) => {
+        if (result.status == 201) {
+
+          this.router.navigate(['/bank/list-bills']);
+
+        }
+      }, (err: HttpErrorResponse) => {
+        this.auxPase1 = uuidv4();
+        // console.warn(err);
+      });
     }else{
       alert("No se puede ingresar un monto inferior a $100");
     }

@@ -11,7 +11,6 @@ var http_1 = require("@angular/common/http");
 var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
 var operators_1 = require("rxjs/operators");
-var PlanAhorroFunctions_1 = require("src/app/components/BankSchema/functions/PlanAhorro/PlanAhorroFunctions");
 var create_plan_ahorro_command_1 = require("src/app/components/BankSchema/models/Bill/commands/create-plan-ahorro-command");
 var options_bill_1 = require("src/app/components/BankSchema/models/Bill/options-bill");
 var uuid_1 = require("uuid");
@@ -75,10 +74,20 @@ var FormCreateCuentaAhorroComponent = /** @class */ (function () {
         });
     };
     FormCreateCuentaAhorroComponent.prototype.save = function () {
+        var _this = this;
         this.ahorroCuenta.clientRef = this.clientDto.id;
         console.log(this.ahorroCuenta);
         if (this.ahorroCuenta.clientRef && this.ahorroCuenta.montoDeAhorro > 99) {
-            PlanAhorroFunctions_1.CreatePlanAhorro(this.ahorroCuenta, this.planAhorroService, this.router, this.auxPase1);
+            this.planAhorroService
+                .registerNewPlanAhorro(this.ahorroCuenta)
+                .subscribe(function (result) {
+                if (result.status == 201) {
+                    _this.router.navigate(['/bank/list-bills']);
+                }
+            }, function (err) {
+                _this.auxPase1 = uuid_1.v4();
+                // console.warn(err);
+            });
         }
         else {
             alert("No se puede ingresar un monto inferior a $100");

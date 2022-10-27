@@ -1,8 +1,7 @@
 "use strict";
 exports.__esModule = true;
-exports.GetClientsNextPage = exports.GetClients = exports.CreateClient = exports.GetParamsClients = void 0;
+exports.GetClientsNextPage = exports.GetClients = exports.GetParamsClients = void 0;
 var pagination_base_1 = require("src/app/shared/models/pagination-base");
-var uuid_1 = require("uuid");
 function GetParamsClients(callClass, optionsClient) {
     if (callClass === void 0) { callClass = ""; }
     if (callClass == "undefined" || callClass == undefined || callClass == null) {
@@ -18,19 +17,6 @@ function GetParamsClients(callClass, optionsClient) {
     return params;
 }
 exports.GetParamsClients = GetParamsClients;
-function CreateClient(client, clientService, router, auxPase1) {
-    clientService
-        .registerNewClient(client)
-        .subscribe(function (result) {
-        if (result.status == 201) {
-            router.navigate(['/clients/list-client']);
-        }
-    }, function (err) {
-        auxPase1 = uuid_1.v4();
-        // console.warn(err);
-    });
-}
-exports.CreateClient = CreateClient;
 function GetClients(clientService, optionsClient, utilsService) {
     GetClientsDb(clientService, optionsClient, utilsService, "GetAll");
 }

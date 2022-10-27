@@ -1,8 +1,7 @@
 "use strict";
 exports.__esModule = true;
-exports.GetPlanesDeAhorroNextPage = exports.GetPlanesDeAhorro = exports.CreatePlanAhorro = exports.GetParamsPlanAhorro = void 0;
+exports.GetPlanesDeAhorroNextPage = exports.GetPlanesDeAhorro = exports.GetParamsPlanAhorro = void 0;
 var pagination_base_1 = require("src/app/shared/models/pagination-base");
-var uuid_1 = require("uuid");
 function GetParamsPlanAhorro(callClass, optionsClient) {
     if (callClass === void 0) { callClass = ""; }
     if (callClass == "undefined" || callClass == undefined || callClass == null) {
@@ -21,19 +20,6 @@ function GetParamsPlanAhorro(callClass, optionsClient) {
     return params;
 }
 exports.GetParamsPlanAhorro = GetParamsPlanAhorro;
-function CreatePlanAhorro(client, clientService, router, auxPase1) {
-    clientService
-        .registerNewPlanAhorro(client)
-        .subscribe(function (result) {
-        if (result.status == 201) {
-            router.navigate(['/bank/list-bills']);
-        }
-    }, function (err) {
-        auxPase1 = uuid_1.v4();
-        // console.warn(err);
-    });
-}
-exports.CreatePlanAhorro = CreatePlanAhorro;
 function GetPlanesDeAhorro(clientService, optionsClient, utilsService) {
     GetClientsDb(clientService, optionsClient, utilsService, "GetAll");
 }

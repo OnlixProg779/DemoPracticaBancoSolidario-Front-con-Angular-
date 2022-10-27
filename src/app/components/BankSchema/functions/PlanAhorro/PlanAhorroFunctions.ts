@@ -32,23 +32,6 @@ export function GetParamsPlanAhorro(callClass:string = "",optionsClient: PlanAho
     
   }
 
-  export function CreatePlanAhorro(client: CreatePlanAhorroCommand, clientService: BillService, router: Router, auxPase1:any){
-
-    clientService
-      .registerNewPlanAhorro(
-        client
-      )
-      .subscribe((result: HttpResponse<any>) => {
-        if (result.status == 201) {
-
-          router.navigate(['/bank/list-bills']);
-
-        }
-      }, (err: HttpErrorResponse) => {
-        auxPase1 = uuidv4();
-        // console.warn(err);
-      });
-  }
   
   export function GetPlanesDeAhorro(clientService: BillService, optionsClient: OptionsBill, utilsService:UtilsService){
     GetClientsDb(clientService,optionsClient,utilsService,"GetAll");
