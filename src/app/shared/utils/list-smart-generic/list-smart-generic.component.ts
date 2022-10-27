@@ -29,7 +29,7 @@ export class ListSmartGenericComponent implements OnInit {
   showPerPage:number;
 
   @Input()
-  routeCreate:string;
+  routeCreate:string = null;
 
 
   

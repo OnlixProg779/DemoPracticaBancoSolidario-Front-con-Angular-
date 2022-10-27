@@ -3,35 +3,36 @@
 <div class="container-fluid">
     <div class="row">
   
+
       <div class="col-xl-3 col-md-6 xl-50">
-        <div class="card o-hidden  widget-cards">
-          <a [routerLink]="['/deposits/create-deposit']" class="bg-secondary card-body">
+        <div class="card o-hidden widget-cards">
+          <a [routerLink]="['/bank/list-bills']" class="bg-secondary card-body">
             <div class="media static-top-widget row">
               <div class="icons-widgets col-4">
                 <div class="align-self-center text-center">
-                  <app-feather-icons [icon]="'dollar-sign'" class="font-primary"></app-feather-icons>
+                  <app-feather-icons [icon]="'archive'" class="font-primary"></app-feather-icons>
                 </div>
               </div>
               <div class="media-body col-8">
-                <h4 class="m-0">New Deposit</h4>
-                <!-- <h3 class="mb-0">$ <span class="counter" [CountTo]="9856" [from]="0" [duration]="2">9856</span><small> This Month</small></h3> -->
+                <h4 class="m-0">Lista de Cuentas</h4>
+                <!-- <h3 class="mb-0">$ <span class="counter" [CountTo]="6659" [from]="0" [duration]="2">6659</span><small> This Month</small></h3> -->
               </div>
             </div>
           </a>
         </div>
       </div>
       <div class="col-xl-3 col-md-6 xl-50">
-        <div class="card o-hidden widget-cards">
-          <a [routerLink]="['/purchases/create-purchase', clientId]" class="bg-info card-body">
+        <div class="card o-hidden  widget-cards">
+          <a [routerLink]="['/clients/create-client']" class="bg-info card-body">
             <div class="media static-top-widget row">
               <div class="icons-widgets col-4">
                 <div class="align-self-center text-center">
-                  <app-feather-icons [icon]="'archive'" class="font-warning"></app-feather-icons>
+                  <app-feather-icons [icon]="'dollar-sign'" class="font-warning"></app-feather-icons>
                 </div>
               </div>
               <div class="media-body col-8">
-                <h4 class="m-0">Add Purchase</h4>
-                <!-- <h3 class="mb-0">$ <span class="counter" [CountTo]="6659" [from]="0" [duration]="2">6659</span><small> This Month</small></h3> -->
+                <h4 class="m-0">Agregar Cliente</h4>
+                <!-- <h3 class="mb-0">$ <span class="counter" [CountTo]="9856" [from]="0" [duration]="2">9856</span><small> This Month</small></h3> -->
               </div>
             </div>
           </a>

@@ -13,6 +13,7 @@ var ListSmartGenericComponent = /** @class */ (function () {
         this.tittle = null;
         this.showQuickFilters = true;
         this.showButtonSearchFilters = true;
+        this.routeCreate = null;
         this.changeShowPerPage = new core_1.EventEmitter();
     }
     ListSmartGenericComponent.prototype.ngOnInit = function () {
