@@ -1,6 +1,7 @@
 <app-list-smart-generic [settings]="optionsClient.settings" 
   [tittle]="'Client Details'"
   [source]="optionsClient.source"
+  [routeCreate]="'/clients/create-client'"
   [totalCount]="optionsClient.totalCount" [showPerPage]="optionsClient.showPerPage" 
   (changeShowPerPage)="changeShowPerPage($event)">
 

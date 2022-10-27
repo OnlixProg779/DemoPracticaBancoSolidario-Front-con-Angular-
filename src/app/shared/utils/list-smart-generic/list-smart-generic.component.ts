@@ -28,6 +28,9 @@ export class ListSmartGenericComponent implements OnInit {
   @Input()
   showPerPage:number;
 
+  @Input()
+  routeCreate:string;
+
 
   
   @Output()

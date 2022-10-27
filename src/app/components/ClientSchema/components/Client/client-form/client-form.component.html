@@ -14,12 +14,9 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="card">
-                      <div class="card-header pt-0">
-                        <h5>Account</h5>
-                      </div>
-
+      
                       <div class="  form-group">
-                        <label for="validationCustom1" class="col-form-label pt-0"><span>*</span> First
+                        <label for="validationCustom1" class="col-form-label pt-0"><span>*</span>
                           Name</label>
                         <input formControlName="nombre" class="form-control  " id="validationCustom1" type="text">
                         <div *ngIf="accountForm.controls.nombre.touched && accountForm.controls.nombre.errors?.required"
@@ -27,31 +24,9 @@
                           <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
                           </app-feather-icons>
                           <div>
-                            {{validatorService.getErrorField(accountForm,'nombre','First name')}}
+                            {{validatorService.getErrorField(accountForm,'nombre','Name')}}
                           </div>
                         </div>
-                      </div>
-                      <div class="  form-group">
-                        <label for="validationCustom2" class="col-form-label pt-0"><span>*</span>
-                          Last Name</label>
-                        <input formControlName="apellidos" class="form-control  " id="validationCustom2" type="text">
-                        <div
-                          *ngIf="accountForm.controls.apellidos.touched && accountForm.controls.apellidos.errors?.required"
-                          class="text text-danger row pl-4 pt-1">
-                          <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
-                          </app-feather-icons>
-                          <div>
-                            {{validatorService.getErrorField(accountForm,'apellidos','Last name')}}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="validationCustom10" class="col-form-label pt-0"><span
-                            style="color: rgba(0, 0, 0, 0);">·</span>
-                          Email</label>
-                        <input formControlName="email" class="form-control  " id="validationCustom10" type="email">
-
                       </div>
 
                     </div>
@@ -59,39 +34,22 @@
 
                   <div class="col-sm-6">
                     <div class="card">
-                      <div class="card-header pt-0">
-                        <h5>Details</h5>
-                      </div>
 
                       <div class="  form-group">
                         <label for="validationCustom8" class="col-form-label pt-0"><span>*</span>
-                          City</label>
-                        <input formControlName="city" class="form-control  " id="validationCustom8" type="text">
-                        <div *ngIf="accountForm.controls.city.touched && accountForm.controls.city.errors?.required"
+                          C.I.</label>
+                        <input formControlName="cedula" class="form-control  " id="validationCustom8" type="number">
+                        <div *ngIf="accountForm.controls.cedula.touched && accountForm.controls.cedula.errors?.required"
                           class="text text-danger row pl-4 pt-1">
                           <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
                           </app-feather-icons>
                           <div>
-                            {{validatorService.getErrorField(accountForm,'city','City')}}
+                            {{validatorService.getErrorField(accountForm,'cedula','C.I.')}}
                           </div>
                         </div>
                       </div>
 
-                      <div class="  form-group">
-                        <label for="validationCustom6" class="col-form-label pt-0"><span
-                            style="color: rgba(0, 0, 0, 0);">·</span>
-                          Phone</label>
-                        <input formControlName="phone" class="form-control  " id="validationCustom6" type="text">
-                      </div>
-
-
-                      <div class="  form-group">
-                        <label for="validationCustom3" class="col-form-label pt-0"><span
-                            style="color: rgba(0, 0, 0, 0);">·</span>
-                          Instagram</label>
-                        <input formControlName="instagram" class="form-control  " id="validationCustom3" type="text">
-                      </div>
-
+                      
                     </div>
                   </div>
                 </div>

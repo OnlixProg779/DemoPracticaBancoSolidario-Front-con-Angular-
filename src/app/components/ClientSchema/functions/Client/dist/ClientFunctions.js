@@ -22,7 +22,7 @@ function CreateClient(client, clientService, router, auxPase1) {
     clientService
         .registerNewClient(client)
         .subscribe(function (result) {
-        if (result.status == 200) {
+        if (result.status == 201) {
             router.navigate(['/clients/list-client']);
         }
     }, function (err) {

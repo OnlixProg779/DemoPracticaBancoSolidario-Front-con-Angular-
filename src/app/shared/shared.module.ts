@@ -37,6 +37,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ListSmartGenericComponent } from './utils/list-smart-generic/list-smart-generic.component';
 import { GenericFiltersComponent } from './utils/generic-filters/generic-filters.component';
 import { ClientStandardFiltersComponent } from './components-filters/clientSchema/client/client-standard-filters/client-standard-filters.component';
+import { FormCreateCuentaAhorroComponent } from './utils/form-create-cuenta-ahorro/form-create-cuenta-ahorro.component';
+import { PlanAhorroStandarsFiltersComponent } from './components-filters/bankSchema/PlanAhorro/plan-ahorro-standars-filters/plan-ahorro-standars-filters.component';
 
 
 @NgModule({
@@ -61,6 +63,8 @@ import { ClientStandardFiltersComponent } from './components-filters/clientSchem
     ListSmartGenericComponent,
     GenericFiltersComponent,
     ClientStandardFiltersComponent,
+    FormCreateCuentaAhorroComponent,
+    PlanAhorroStandarsFiltersComponent,
     
   ],
   imports: [
@@ -91,7 +95,9 @@ import { ClientStandardFiltersComponent } from './components-filters/clientSchem
     CustomEditorComponent,
     ListSmartGenericComponent,
     GenericFiltersComponent,
-    ClientStandardFiltersComponent
+    ClientStandardFiltersComponent,
+    FormCreateCuentaAhorroComponent,
+    PlanAhorroStandarsFiltersComponent
   ]
 })
 export class SharedModule { }

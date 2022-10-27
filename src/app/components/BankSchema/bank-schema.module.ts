@@ -11,6 +11,7 @@ import { TypeBillListComponent } from './components/TypeBill/type-bill-list/type
 import { BillPatchComponent } from './components/Bill/bill-patch/bill-patch.component';
 import { TypeBillPatchComponent } from './components/TypeBill/type-bill-patch/type-bill-patch.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FiltersPlanAhorroFormComponent } from './components/Bill/filters-plan-ahorro-form/filters-plan-ahorro-form.component';
 
 
 
@@ -24,6 +25,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     TypeBillListComponent,
     BillPatchComponent,
     TypeBillPatchComponent,
+    FiltersPlanAhorroFormComponent,
   ],
   imports: [
     CommonModule,

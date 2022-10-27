@@ -1,0 +1,32 @@
+<ng-container *ngIf="showFilters">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+  
+          <div class="form-group" style="padding: 0 2em;">
+            <label class="col-form-label pt-0">
+              Cliente </label>
+            <input [(ngModel)]="params.clientRef" class="form-control col-sm-12" type="text">
+          </div>
+  
+          <ng-content select="[field-relation1-wo-fkey]"></ng-content>
+  
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+  
+          <div class="form-group" style="padding: 0 2em;">
+            <label class="col-form-label pt-0">
+              Plan Ahorro </label>
+            <input [(ngModel)]="params.tiempoPlanDeAhorroId" class="form-control col-sm-12" type="number">
+          </div>
+  
+  
+          <ng-content select="[field-relation2-wo-fkey]"></ng-content>
+  
+        </div>
+      </div>
+    </div>
+  
+  </ng-container>

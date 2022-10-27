@@ -1,18 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BillCreateComponent } from './components/Bill/bill-create/bill-create.component';
+import { BillListComponent } from './components/Bill/bill-list/bill-list.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      // {
-      //   path: 'list-client',
-      //   component: ListClientComponent,
-      //   data: {
-      //     title: "Client List",
-      //     breadcrumb: "Client List"
-      //   }
-      // },
+      {
+        path: 'create-account',
+        component: BillCreateComponent,
+        data: {
+          title: "Crear De Ahorro",
+          breadcrumb: "Cuenta Ahorro - Interes Nominal"
+        }
+      },
+      {
+        path: 'list-bills',
+        component: BillListComponent,
+        data: {
+          title: "Lista de Cuentas",
+          breadcrumb: "Cuenta Ahorros - Listado"
+        }
+      },
 
     ]
   }

@@ -40,6 +40,8 @@ var ngx_infinite_scroll_1 = require("ngx-infinite-scroll");
 var list_smart_generic_component_1 = require("./utils/list-smart-generic/list-smart-generic.component");
 var generic_filters_component_1 = require("./utils/generic-filters/generic-filters.component");
 var client_standard_filters_component_1 = require("./components-filters/clientSchema/client/client-standard-filters/client-standard-filters.component");
+var form_create_cuenta_ahorro_component_1 = require("./utils/form-create-cuenta-ahorro/form-create-cuenta-ahorro.component");
+var plan_ahorro_standars_filters_component_1 = require("./components-filters/bankSchema/PlanAhorro/plan-ahorro-standars-filters/plan-ahorro-standars-filters.component");
 var SharedModule = /** @class */ (function () {
     function SharedModule() {
     }
@@ -66,6 +68,8 @@ var SharedModule = /** @class */ (function () {
                 list_smart_generic_component_1.ListSmartGenericComponent,
                 generic_filters_component_1.GenericFiltersComponent,
                 client_standard_filters_component_1.ClientStandardFiltersComponent,
+                form_create_cuenta_ahorro_component_1.FormCreateCuentaAhorroComponent,
+                plan_ahorro_standars_filters_component_1.PlanAhorroStandarsFiltersComponent,
             ],
             imports: [
                 common_1.CommonModule,
@@ -94,7 +98,9 @@ var SharedModule = /** @class */ (function () {
                 custom_editor_component_1.CustomEditorComponent,
                 list_smart_generic_component_1.ListSmartGenericComponent,
                 generic_filters_component_1.GenericFiltersComponent,
-                client_standard_filters_component_1.ClientStandardFiltersComponent
+                client_standard_filters_component_1.ClientStandardFiltersComponent,
+                form_create_cuenta_ahorro_component_1.FormCreateCuentaAhorroComponent,
+                plan_ahorro_standars_filters_component_1.PlanAhorroStandarsFiltersComponent
             ]
         })
     ], SharedModule);

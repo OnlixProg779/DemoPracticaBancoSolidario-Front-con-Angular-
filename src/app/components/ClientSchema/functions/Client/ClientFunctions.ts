@@ -35,7 +35,7 @@ export function GetParamsClients(callClass:string = "",optionsClient: ClientsPag
         client
       )
       .subscribe((result: HttpResponse<any>) => {
-        if (result.status == 200) {
+        if (result.status == 201) {
 
           router.navigate(['/clients/list-client']);
 

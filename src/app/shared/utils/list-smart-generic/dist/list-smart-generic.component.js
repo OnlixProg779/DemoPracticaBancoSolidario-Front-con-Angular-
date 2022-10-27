@@ -48,6 +48,9 @@ var ListSmartGenericComponent = /** @class */ (function () {
         core_1.Input()
     ], ListSmartGenericComponent.prototype, "showPerPage");
     __decorate([
+        core_1.Input()
+    ], ListSmartGenericComponent.prototype, "routeCreate");
+    __decorate([
         core_1.Output()
     ], ListSmartGenericComponent.prototype, "changeShowPerPage");
     ListSmartGenericComponent = __decorate([

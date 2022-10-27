@@ -15,14 +15,6 @@
         </div>
 
         <div class="form-group" style="padding: 0 2em;">
-          <label class="col-form-label"> Registered by</label>
-          <select [(ngModel)]="paramsGenerics.createdBy" class="form-control col-sm-12">
-            <option [ngValue]="null"></option>
-            <!-- <option *ngFor="let c of arrayEmployees" [ngValue]="c.employeeId">{{c.name}} - {{c.agency}}</option> -->
-          </select>
-        </div>
-
-        <div class="form-group" style="padding: 0 2em;">
           <label class="col-form-label pt-0"> Active</label>
           <select [(ngModel)]="paramsGenerics.active" class="form-control col-sm-12">
             <option [ngValue]="null">All</option>
@@ -48,14 +40,6 @@
         </div>
 
         <div class="form-group" style="padding: 0 2em;">
-          <label class="col-form-label"> Last Modified by</label>
-          <select [(ngModel)]="paramsGenerics.lastModifiedBy" class="form-control col-sm-12">
-            <option [ngValue]="null"></option>
-            <!-- <option *ngFor="let c of arrayEmployees" [ngValue]="c.employeeId">{{c.name}} - {{c.agency}}</option> -->
-          </select>
-        </div>
-
-        <div class="form-group" style="padding: 0 2em;">
           <label class="col-form-label pt-0"> Editable</label>
           <select [(ngModel)]="paramsGenerics.editable" class="form-control col-sm-12">
             <option [ngValue]="null">All</option>
@@ -67,15 +51,6 @@
         <div class="form-group" style="padding: 0 2em;">
           <label class="col-form-label pt-0"> Borrable</label>
           <select [(ngModel)]="paramsGenerics.borrable" class="form-control col-sm-12">
-            <option [ngValue]="null">All</option>
-            <option [ngValue]="false">No</option>
-            <option [ngValue]="true">Yes</option>
-          </select>
-        </div>
-
-        <div class="form-group" style="padding: 0 2em;">
-          <label class="col-form-label pt-0"> showToUserMed</label>
-          <select [(ngModel)]="paramsGenerics.showToUserMed" class="form-control col-sm-12">
             <option [ngValue]="null">All</option>
             <option [ngValue]="false">No</option>
             <option [ngValue]="true">Yes</option>

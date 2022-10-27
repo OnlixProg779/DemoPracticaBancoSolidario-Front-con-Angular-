@@ -9,18 +9,28 @@ exports.__esModule = true;
 exports.BankSchemaRoutingModule = void 0;
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var bill_create_component_1 = require("./components/Bill/bill-create/bill-create.component");
+var bill_list_component_1 = require("./components/Bill/bill-list/bill-list.component");
 var routes = [
     {
         path: '',
         children: [
-        // {
-        //   path: 'list-client',
-        //   component: ListClientComponent,
-        //   data: {
-        //     title: "Client List",
-        //     breadcrumb: "Client List"
-        //   }
-        // },
+            {
+                path: 'create-account',
+                component: bill_create_component_1.BillCreateComponent,
+                data: {
+                    title: "Crear De Ahorro",
+                    breadcrumb: "Cuenta Ahorro - Interes Nominal"
+                }
+            },
+            {
+                path: 'list-bills',
+                component: bill_list_component_1.BillListComponent,
+                data: {
+                    title: "Lista de Cuentas",
+                    breadcrumb: "Cuenta Ahorros - Listado"
+                }
+            },
         ]
     }
 ];

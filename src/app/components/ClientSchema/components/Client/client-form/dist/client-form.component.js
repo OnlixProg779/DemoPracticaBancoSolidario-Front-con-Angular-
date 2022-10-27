@@ -31,20 +31,12 @@ var ClientFormComponent = /** @class */ (function () {
                     validators: [forms_1.Validators.required]
                 },
             ],
-            apellidos: [
+            cedula: [
                 '',
                 {
                     validators: [forms_1.Validators.required]
                 },
-            ],
-            instagram: [''],
-            city: ['',
-                {
-                    validators: [forms_1.Validators.required]
-                },
-            ],
-            email: [''],
-            phone: ['']
+            ]
         });
     };
     ClientFormComponent.prototype.save = function () {

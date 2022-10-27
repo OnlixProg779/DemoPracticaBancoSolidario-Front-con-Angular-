@@ -54,20 +54,12 @@ export class ClientFormComponent implements OnInit {
           validators: [Validators.required],
         },
       ],
-      apellidos: [
+      cedula: [
         '',
         {
           validators: [Validators.required],
         },
       ],
-      instagram: [''],
-      city: ['',
-      {
-        validators: [Validators.required],
-      },
-    ],
-      email: [''],
-      phone: [''],
     });
   }
 

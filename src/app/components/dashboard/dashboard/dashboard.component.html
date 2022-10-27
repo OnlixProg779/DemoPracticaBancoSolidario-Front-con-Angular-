@@ -4,40 +4,6 @@
     <div class="row">
   
       <div class="col-xl-3 col-md-6 xl-50">
-        <div class="card o-hidden widget-cards">
-          <a [routerLink]="'/clients/create-client'" class="bg-danger card-body">
-            <div class="media static-top-widget row">
-              <div class="icons-widgets col-4">
-                <div class="align-self-center text-center">
-                  <app-feather-icons [icon]="'truck'" class="font-danger"></app-feather-icons>
-                </div>
-              </div>
-              <div class="media-body col-8">
-                <h4 class="m-0">New shipping</h4>
-                <!-- <h3 class="mb-0">$ <span class="counter" [CountTo]="45631" [from]="0" [duration]="2">45631</span><small> This Month</small></h3> -->
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-xl-3 col-md-6 xl-50">
-        <div class="card o-hidden widget-cards">
-          <a [routerLink]="['/postbox/receive-order', clientId]" class="bg-primary card-body">
-            <div class="media static-top-widget row">
-              <div class="icons-widgets col-4">
-                <div class="align-self-center text-center">
-                  <app-feather-icons [icon]="'box'" class="font-secondary"></app-feather-icons>
-                </div>
-              </div>
-              <div class="media-body col-8">
-                <h4 class="m-0">Receive Box</h4>
-                <!-- <h3 class="mb-0">$ <span class="counter" [CountTo]="893" [from]="0" [duration]="2">893</span><small> This Month</small></h3> -->
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="col-xl-3 col-md-6 xl-50">
         <div class="card o-hidden  widget-cards">
           <a [routerLink]="['/deposits/create-deposit']" class="bg-secondary card-body">
             <div class="media static-top-widget row">
@@ -73,185 +39,38 @@
       </div>
       <div class="col-xl-12">
         <app-list-smart-generic [settings]="optionsClient.settings" [source]="optionsClient.source" [totalCount]="optionsClient.totalCount" [showPerPage]="optionsClient.showPerPage"></app-list-smart-generic>
-      </div>
-
-      <!-- <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h5>Review Product</h5>
-          </div>
-          <div class="card-body">
-            <div class="input-group col-12">
-              <input (keyup)="filterThrottle.next($event.target.value)" [(ngModel)]="codeProduct" type="text"
-                class="form-control">
-              <span class="input-group-btn">
-                <app-scanner-qr-barcode (codeCharged)="codeCharged($event)"></app-scanner-qr-barcode>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-header">
-            <h5>Agencies</h5>
-          </div>
-          <div class="card-body">
-  
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-12">
-        <app-list-client></app-list-client>
-      </div>
-  
-      <div class="col-xl-6 xl-100">
-        <div class="card">
-          <div class="card-header">
-              <h5 class="text-uppercase">{{optionsGuide.status}} Guides</h5>
-              <ng-container>
-              <div class="row">
-                <div class="col-xl-6">
-                  <div class="card mb-3 mt-4">
-                    <h4 class="m-0"><strong>Destination</strong></h4>
-                  </div>
-                  <div class="card">
-                    <div class="form-group p-0" style="padding: 0 2em;">
-                      <select [(ngModel)]="optionsGuide.destinationAgencyRef" class="form-control col-xl-8 col-sm-7">
-                        <option [ngValue]="null"></option>
-                        <option *ngFor="let c of arrayAgencies" [ngValue]="c.agencyId">
-                          {{c.name}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-      
-                <div class="col-xl-6">
-                  <div class="card">
-                    <div class="card mb-3 mt-4">
-                      <h4 class="m-0"><strong>Status</strong></h4>
-                    </div>
-                    <div class="form-group p-0" style="padding: 0 2em;">
-                      <select [(ngModel)]="optionsGuide.status" class="form-control col-xl-8 col-sm-7">
-                        <option [ngValue]="null">All</option>
-                        <option [ngValue]="'EMPTY'">EMPTY</option>
-                        <option [ngValue]="'PENDING'">PENDING</option>
-                        <option [ngValue]="'COMPLETE'">COMPLETE</option>
-                        <option [ngValue]="'INCOMPLETE'">INCOMPLETE</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-0" style="padding: 0 2em;">
-                <button (click)="searchDataGuides()" class="btn btn-info">Search</button>
-              </div>
-            </ng-container>
-          </div>
-          <div class="card-body">
-  
-            <div class="user-status table-responsive latest-order-table">
-              <div class="row">
-                <div class="flex-column p-2 text-dark pl-2 ml-2 font-weight-bold">
-                  Total records: {{optionsGuide.totalCount}} u |
-                </div>
-              </div>
-              <ng2-smart-table [settings]="optionsGuide.settings" [source]="optionsGuide.source"></ng2-smart-table>
-  
-              <a [routerLink]="['/guides/list-guide']" class="btn btn-primary">View All Guides</a>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-xl-6 xl-100">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="text-uppercase">{{optionsShipping.status}} Shippings</h5>
-            <ng-container>
-              <div class="row">
-                <div class="col-xl-6">
-                  <div class="card mb-3 mt-4">
-                    <h4 class="m-0"><strong>Origin</strong></h4>
-                  </div>
-                  <div class="card">
-                    <div class="form-group p-0" style="padding: 0 2em;">
-                      <select [(ngModel)]="optionsShipping.fromAgency" class="form-control col-xl-8 col-sm-7">
-                        <option [ngValue]="null"></option>
-                        <option *ngFor="let c of arrayAgencies" [ngValue]="c.agencyId">
-                          {{c.name}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-      
-                <div class="col-xl-6">
-                  <div class="card">
-                    <div class="card mb-3 mt-4">
-                      <h4 class="m-0"><strong>Status</strong></h4>
-                    </div>
-                    <div class="form-group p-0" style="padding: 0 2em;">
-                      <select [(ngModel)]="optionsShipping.status" class="form-control col-xl-8 col-sm-7">
-                        <option [ngValue]="null">All</option>
-                        <option [ngValue]="'EMPTY'">EMPTY</option>
-                        <option [ngValue]="'PENDING'">PENDING</option>
-                        <option [ngValue]="'COMPLETE'">COMPLETE</option>
-                        <option [ngValue]="'INCOMPLETE'">INCOMPLETE</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body p-0" style="padding: 0 2em;">
-                <button (click)="searchDataShippings()" class="btn btn-info">Search</button>
-              </div>
-            </ng-container>
-          </div>
-          <div class="card-body">
-  
-            <div class="user-status table-responsive latest-order-table">
-              <div class="row">
-                  <div class="flex-column p-2 text-dark pl-2 ml-2 font-weight-bold">
-                    Total records: {{optionsShipping.totalCount}} u |
-                  </div>
-                </div>
-              <ng2-smart-table [settings]="optionsShipping.settings" [source]="optionsShipping.source"></ng2-smart-table>
-  
-              <a [routerLink]="['/shipping/list-shippings']" class="btn btn-primary">View All Shippings</a>
-            </div>
-          </div>
-        </div>
-      </div> -->
-  
-     
-  
+      </div>     
     </div>
   </div>
   <!-- Container-fluid Ends-->
   
-
   <ng-template #content let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title f-w-600" id="exampleModalLabel"><strong>New Account</strong></h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+  
+      <div class="card">
+        <div class="card-body p-0">
+  
+          <!-- INICIO -->
+  
+         <app-form-create-cuenta-ahorro></app-form-create-cuenta-ahorro>
+  
 
-    <ng-container>
-      <div class="modal-header">
-        <h5 class="modal-title f-w-600" id="exampleModalLabel">New Client</h5>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
+          <!-- FIN -->
+  
+        </div>
       </div>
   
-      <div class="modal-body">
-  
-        <!-- <app-template-product-view [productDto]="productDtoToModal"></app-template-product-view> -->
-  
-      </div>
-  
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-primary" (click)="onEditOrder(receivedBoxDto.receivedBoxId)">Edit</button> -->
-        <button class="btn btn-secondary" ngbAutofocus type="button" data-dismiss="modal"
-          (click)="modal.dismiss('Cross click')">Close</button>
-      </div>
-    </ng-container>
-  
-  
+    </div>
+    <div class="modal-footer">
+      <!-- <button type="button" class="btn btn-primary" (click)="modal.dismiss('accept')" ngbAutofocus>Accept</button> -->
+      <button class="btn btn-secondary" type="button" data-dismiss="modal"
+        (click)="modal.dismiss('Cross click')">Close</button>
+    </div>
   </ng-template>
+  

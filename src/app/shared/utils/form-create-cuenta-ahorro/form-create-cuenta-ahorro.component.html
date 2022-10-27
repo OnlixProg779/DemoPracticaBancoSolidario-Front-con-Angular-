@@ -1,0 +1,101 @@
+<div class="container-fluid">
+
+    <div class="card mb-3">
+      <div class="card-header center p-0">
+        <h2 class="text-center">
+          <small>
+            Proyeccion - Cuenta de Ahorro
+          </small></h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-12 product-related">
+        <div class="card mb-3">
+          <ng-container>
+            <div class="row" >
+              <div class="col-md-6">
+                <div class="card mb-3">
+                  <h4 class="m-0"><span style="color: red;">*</span> $ Monto de Ahorro</h4>
+                </div>
+                <div class="form-group col-sm-8 p-0">
+                  <input [(ngModel)]="ahorroCuenta.montoDeAhorro" class="form-control" type="number" min="100">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card mb-3">
+                  <h4 class="m-0"><span style="color: red;">*</span> Plazo / Interes</h4>
+                </div>
+                <div class="form-group col-sm-8 p-0">
+  
+                  <select [(ngModel)]="ahorroCuenta.tiempoPlanDeAhorroId" class="form-control" (ngModelChange)="onChangeCompany($event)">
+                  <ng-container>
+                    <option [ngValue]="'SERVIENTREGA'">
+                        SERVIENTREGA</option>
+                  </ng-container>
+                  </select>
+  
+                </div>
+              </div>
+            </div>
+  
+            <div class="invoice-body table-responsive-md">
+              <div class="row">
+                <div class="flex-column p-2 text-dark pl-2 ml-2 font-weight-bold">
+                  Proyeccion
+                </div>
+  
+              </div>
+              <table class="table table-borderless mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Detail</th>
+                    <th scope="col">Cost_U.</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <!-- <tbody>
+                  <tr>
+                    <th scope="row">{{(dataBills.weightLb) | number }}_Lb.</th>
+                    <td>Shipping USA - EC</td>
+                    <td>{{dataBills.valueLb | currency }}</td>
+                    <td *ngIf="dataBills.weightLb > 1">{{(dataBills.weightLb * dataBills.valueLb) | currency}}</td>
+                    <td *ngIf="dataBills.weightLb  <= 1">{{(1 * dataBills.valueLb) | currency}}</td>
+                  </tr>
+                  <tr *ngIf="dataBills.weightOfStock">
+                    <th scope="row">{{dataBills.weightOfStock | number }}_Lb.</th>
+                    <td>Shipping USA - EC (Free)</td>
+                    <td>{{0 | currency }}</td>
+                    <td>{{(dataBills.weightLb * 0) | currency}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{(dataBills.weightLb + dataBills.weightOfStock) | number }}_Lb.</th>
+                    <td>Shipping {{dataBills.company}}</td>
+                    <td>{{dataBills.valueOfTransport | currency}}</td>
+                    <td>{{dataBills.valueOfTransport | currency}}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="1"></td>
+                    <td class="font-bold text-dark" colspan="2">GRAND TOTAL</td>
+  
+                    <td class="font-bold text-theme" *ngIf="dataBills.weightLb > 1">
+                      {{(dataBills.weightLb * dataBills.valueLb) + dataBills.valueOfTransport| currency}}</td>
+                    <td class="font-bold text-theme" *ngIf="dataBills.weightLb <= 1">
+                      {{(1 * dataBills.valueLb) + dataBills.valueOfTransport| currency}}</td>
+                  </tr>
+                </tfoot> -->
+              </table>
+
+            </div>
+          </ng-container>
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+
