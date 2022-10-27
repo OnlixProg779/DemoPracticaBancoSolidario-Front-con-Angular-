@@ -13,7 +13,7 @@ export class MultiSelComponent implements ViewCell, OnInit {
 
   model: ResourceMultiSel = new ResourceMultiSel();
 
-  @Output() save: EventEmitter<any> = new EventEmitter();
+  @Output() save: EventEmitter<SentActionPatchDeposit> = new EventEmitter<SentActionPatchDeposit>();
 
   constructor(
     
@@ -34,12 +34,22 @@ export class MultiSelComponent implements ViewCell, OnInit {
       
   }
 
-  onClick() {
-    this.save.emit(this.rowData);
+  onClick(action: string) {
+    var aux = new SentActionPatchDeposit();
+    aux.entity = this.rowData;
+    aux.option = action;
+    this.save.emit(aux);
   }
 
 }
+export class SentActionPatchDeposit {
+  constructor() { }
 
+  entity: any;
+  option: string;
+  csvTableData: any[];
+  public csvTableHeader: any[];
+}
 export class ResourceMultiSel {
   constructor() { }
 

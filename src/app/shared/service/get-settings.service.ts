@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import jwt_decode from "jwt-decode";
 import { Observable } from 'rxjs';
 import { MultiSelComponent, ResourceMultiSel } from '../multi-sel/multi-sel.component';
@@ -11,7 +12,7 @@ export class GetSettingsService {
 
   constructor() { }
 
-  settingsClients(showPerPage: number, callTo: string):Observable<Object> {
+  settingsClients(showPerPage: number, callTo: string, router: Router ):Observable<Object> {
 
     return new Observable(observer => {
       // var decoded: any = jwt_decode(sessionStorage.getItem('bearerToken')); // decodificamos para analizar el rol del usuario y asi asignar diferentes propiedades a la tabla
@@ -85,14 +86,46 @@ export class GetSettingsService {
             renderComponent: MultiSelComponent,
             onComponentInitFunction: (instance) => {
               instance.save.subscribe((item) => {
-                // console.log(item);
-                // console.log(instance);
+                console.log(item);
+                console.log(instance);
                 // this.router.navigate(['/clients/bills/' + item.entity.receivedBox.postBox.client.clientId]);
   
               });
             },
           },
+          nuevaCuenta: {
+            title: 'Nueva Cuenta',
+            filter: false,
+            type: 'custom',
+            valuePrepareFunction: (value, row, cell) => {
+              var sentData: ResourceMultiSel = new ResourceMultiSel();
+              sentData.action = [];
+              sentData.styl = [];
+              sentData.stepClass = [];
+              sentData.icon = [];
+  
+  
+              if (row.active) {
 
+                sentData.action.push(`Crear cuenta`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('background-color: #047aa2;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.8em 0.8em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+             
+              }
+              return sentData;
+            },
+            renderComponent: MultiSelComponent,
+            onComponentInitFunction: (instance) => {
+              instance.save.subscribe((item) => {
+                console.log(item);
+                if(item.option == 'Crear cuenta'){
+                router.navigate(['/bank/create-account/' + item.entity.id]);
+                }
+                
+              
+              });         
+            },
+          },
           control: {
             title: 'Control',
             filter: false,
@@ -153,11 +186,15 @@ export class GetSettingsService {
             },
             renderComponent: MultiSelComponent,
             onComponentInitFunction: (instance) => {
+              instance.save.subscribe((item) => {
+                console.log(item);
+                console.log(instance);
+                // this.router.navigate(['/clients/bills/' + item.entity.receivedBox.postBox.client.clientId]);
   
-            },
+              });            },
           },
           actions: {
-            title: 'Actions',
+            title: 'A',
             filter: false,
             type: 'custom',
             valuePrepareFunction: (value, row, cell) => {
@@ -169,23 +206,32 @@ export class GetSettingsService {
   
   
               if (!row.active) {
-                sentData.action.push(`Deleted`);
-                sentData.stepClass.push('btn btn-outline col-12');
-                sentData.styl.push('background-color: #de1e1e;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                sentData.action.push(`Restore`);
+                sentData.icon.push(`rotate-ccw`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:black;cursor: pointer;');
   
               } else {  
-                sentData.action.push(`Edit`);
-                sentData.icon.push(`codepen`);
-                sentData.stepClass.push('btn btn-outline col-12');
-                sentData.styl.push('background-color: #1e7915;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                sentData.action.push(`Delete`);
+                sentData.icon.push(`delete`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:red;cursor: pointer;');
               }
-
-  
               return sentData;
             },
             renderComponent: MultiSelComponent,
             onComponentInitFunction: (instance) => {
-  
+              instance.save.subscribe((item) => {
+                console.log(item);
+                if(item.option == 'Restore'){
+
+                }
+                if(item.option == 'Delete'){
+                  
+                }
+                // this.router.navigate(['/clients/bills/' + item.entity.receivedBox.postBox.client.clientId]);
+              
+              });         
             },
           },
         },
@@ -255,11 +301,58 @@ export class GetSettingsService {
           montoDeAhorro: {
             title: 'montoDeAhorro',
             filter: false,
+            valuePrepareFunction: (value, row, cell) => {
+              return `$${value}`;
+            }
           },
 
-          tiempoPlanDeAhorroId: {
-            title: 'tiempoPlanDeAhorro',
+          location: {
+            title: 'Info',
             filter: false,
+            type: 'custom',
+            valuePrepareFunction: (value, row, cell) => {
+              var sentData: ResourceMultiSel = new ResourceMultiSel();
+              sentData.action = [];
+              sentData.styl = [];
+              sentData.stepClass = [];
+              sentData.icon = [];
+  
+  
+              if (!row.active) {
+                sentData.action.push(`Interes ${row.tiempoPlanDeAhorro.tipoDeInteres}`);
+                sentData.stepClass.push('btn btn-success');
+                sentData.styl.push('background-color: red;text-transform: initial;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+  
+  
+                sentData.action.push(`X ${row.tiempoPlanDeAhorro.meses} meses`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('background-color: red;text-transform: initial;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+  
+                sentData.action.push(`${row.tiempoPlanDeAhorro.tasaDeInteresAnual}% de interes anual`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('background-color: red;text-transform: initial;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+              } else {
+  
+                sentData.action.push(`Interes ${row.tiempoPlanDeAhorro.tipoDeInteres}`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('background-color: #4187d2;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                
+                sentData.action.push(`X ${row.tiempoPlanDeAhorro.meses} meses`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('line-height: 1;text-transform: initial;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:dark;cursor: auto;');
+  
+                sentData.action.push(`${row.tiempoPlanDeAhorro.tasaDeInteresAnual}% de interes anual`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('line-height: 1;text-transform: initial;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:dark;cursor: auto;');
+  
+              }
+  
+              return sentData;
+            },
+            renderComponent: MultiSelComponent,
+            onComponentInitFunction: (instance) => {
+  
+            },
           },
   
           // nombre: {
@@ -354,7 +447,7 @@ export class GetSettingsService {
             },
           },
           actions: {
-            title: 'Actions',
+            title: 'A',
             filter: false,
             type: 'custom',
             valuePrepareFunction: (value, row, cell) => {
@@ -366,23 +459,32 @@ export class GetSettingsService {
   
   
               if (!row.active) {
-                sentData.action.push(`Deleted`);
-                sentData.stepClass.push('btn btn-outline col-12');
-                sentData.styl.push('background-color: #de1e1e;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                sentData.action.push(`Restore`);
+                sentData.icon.push(`rotate-ccw`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:black;cursor: pointer;');
   
               } else {  
-                sentData.action.push(`Edit`);
-                sentData.icon.push(`codepen`);
-                sentData.stepClass.push('btn btn-outline col-12');
-                sentData.styl.push('background-color: #1e7915;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                sentData.action.push(`Delete`);
+                sentData.icon.push(`delete`);
+                sentData.stepClass.push('btn btn-outline');
+                sentData.styl.push('line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:red;cursor: pointer;');
               }
-
-  
               return sentData;
             },
             renderComponent: MultiSelComponent,
             onComponentInitFunction: (instance) => {
-  
+              instance.save.subscribe((item) => {
+                console.log(item);
+                if(item.option == 'Restore'){
+
+                }
+                if(item.option == 'Delete'){
+                  
+                }
+                // this.router.navigate(['/clients/bills/' + item.entity.receivedBox.postBox.client.clientId]);
+              
+              });         
             },
           },
         },

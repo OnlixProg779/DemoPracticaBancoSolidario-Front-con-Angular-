@@ -11,17 +11,18 @@ var core_1 = require("@angular/core");
 var ClientFunctions_1 = require("../../ClientSchema/functions/Client/ClientFunctions");
 var options_client_1 = require("../../ClientSchema/models/Client/options-client");
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(clientService, utilsService, getSettingsService) {
+    function DashboardComponent(clientService, utilsService, getSettingsService, router) {
         this.clientService = clientService;
         this.utilsService = utilsService;
         this.getSettingsService = getSettingsService;
+        this.router = router;
         this.optionsClient = null;
         this.clientId = "";
         this.optionsClient = new options_client_1.OptionsClient();
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.getSettingsService.settingsClients(this.optionsClient.showPerPage, "dashboard").subscribe(function (result) {
+        this.getSettingsService.settingsClients(this.optionsClient.showPerPage, "dashboard", this.router).subscribe(function (result) {
             _this.optionsClient.settings = result;
         }, (function (err) {
             console.warn(err);

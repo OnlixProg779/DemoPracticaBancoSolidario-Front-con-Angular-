@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'create-account',
+        path: 'create-account/:id',
         component: BillCreateComponent,
         data: {
           title: "Crear De Ahorro",

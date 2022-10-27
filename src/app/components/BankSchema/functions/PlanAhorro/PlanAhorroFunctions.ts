@@ -41,7 +41,7 @@ export function GetParamsPlanAhorro(callClass:string = "",optionsClient: PlanAho
       .subscribe((result: HttpResponse<any>) => {
         if (result.status == 201) {
 
-          router.navigate(['/clients/list-client']);
+          router.navigate(['/bank/list-bills']);
 
         }
       }, (err: HttpErrorResponse) => {

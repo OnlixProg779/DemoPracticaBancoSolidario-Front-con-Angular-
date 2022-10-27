@@ -16,7 +16,7 @@ var routes = [
         path: '',
         children: [
             {
-                path: 'create-account',
+                path: 'create-account/:id',
                 component: bill_create_component_1.BillCreateComponent,
                 data: {
                     title: "Crear De Ahorro",

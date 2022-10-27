@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetSettingsService } from 'src/app/shared/service/get-settings.service';
 import { UtilsService } from 'src/app/shared/service/utils.service';
 import { GetClients } from '../../ClientSchema/functions/Client/ClientFunctions';
@@ -19,12 +20,13 @@ export class DashboardComponent implements OnInit {
     private clientService: ClientService,
     private utilsService:UtilsService,
     private getSettingsService: GetSettingsService,
+    private router: Router
   ) {
     this.optionsClient = new OptionsClient();
    }
 
   ngOnInit(): void {
-    this.getSettingsService.settingsClients(this.optionsClient.showPerPage, "dashboard").subscribe((result:Object) => {
+    this.getSettingsService.settingsClients(this.optionsClient.showPerPage, "dashboard", this.router).subscribe((result:Object) => {
       this.optionsClient.settings = result;
     },(err => {
       console.warn(err);

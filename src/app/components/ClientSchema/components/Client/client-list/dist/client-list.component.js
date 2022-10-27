@@ -12,10 +12,11 @@ var functionsShared_1 = require("src/app/shared/functions/functionsShared");
 var ClientFunctions_1 = require("../../../functions/Client/ClientFunctions");
 var options_client_1 = require("../../../models/Client/options-client");
 var ClientListComponent = /** @class */ (function () {
-    function ClientListComponent(clientService, utilsService, getSettingsService) {
+    function ClientListComponent(clientService, utilsService, getSettingsService, router) {
         this.clientService = clientService;
         this.utilsService = utilsService;
         this.getSettingsService = getSettingsService;
+        this.router = router;
         this.optionsClient = null;
         this.showFiltersGenericsClient = false;
         this.showFiltersParticular = false;
@@ -25,7 +26,7 @@ var ClientListComponent = /** @class */ (function () {
     }
     ClientListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.getSettingsService.settingsClients(this.optionsClient.showPerPage, "list-client").subscribe(function (result) {
+        this.getSettingsService.settingsClients(this.optionsClient.showPerPage, "list-client", this.router).subscribe(function (result) {
             _this.optionsClient.settings = result;
         }, (function (err) {
             console.warn(err);

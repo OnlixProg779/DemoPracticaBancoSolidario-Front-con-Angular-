@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 exports.__esModule = true;
-exports.ResourceMultiSel = exports.MultiSelComponent = void 0;
+exports.ResourceMultiSel = exports.SentActionPatchDeposit = exports.MultiSelComponent = void 0;
 var core_1 = require("@angular/core");
 var MultiSelComponent = /** @class */ (function () {
     function MultiSelComponent() {
@@ -23,8 +23,11 @@ var MultiSelComponent = /** @class */ (function () {
         this.model.styl = value.styl;
         this.model.icon = value.icon;
     };
-    MultiSelComponent.prototype.onClick = function () {
-        this.save.emit(this.rowData);
+    MultiSelComponent.prototype.onClick = function (action) {
+        var aux = new SentActionPatchDeposit();
+        aux.entity = this.rowData;
+        aux.option = action;
+        this.save.emit(aux);
     };
     __decorate([
         core_1.Input()
@@ -45,6 +48,12 @@ var MultiSelComponent = /** @class */ (function () {
     return MultiSelComponent;
 }());
 exports.MultiSelComponent = MultiSelComponent;
+var SentActionPatchDeposit = /** @class */ (function () {
+    function SentActionPatchDeposit() {
+    }
+    return SentActionPatchDeposit;
+}());
+exports.SentActionPatchDeposit = SentActionPatchDeposit;
 var ResourceMultiSel = /** @class */ (function () {
     function ResourceMultiSel() {
     }

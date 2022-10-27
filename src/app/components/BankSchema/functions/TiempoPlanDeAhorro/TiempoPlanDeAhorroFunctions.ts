@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { OptionsTypeBill, TiempoPlanDeAhorroPaginParams } from "../../models/TypeBill/options-type-bill";
 import { CreateTiempoPlanDeAhorroCommand } from "../../models/TypeBill/commands/create-tiempo-plan-de-ahorro-command";
 import { TypeBillService } from "../../services/type-bill.service";
+import { TiempoPlanDeAhorroVm } from "../../models/TypeBill/queries/tiempo-plan-de-ahorro-vm";
 
 
 export function GetParamsTiempoPlanDeAhorro(callClass:string = "",optionsClient: TiempoPlanDeAhorroPaginParams): HttpParams {
@@ -114,3 +115,4 @@ export function GetParamsTiempoPlanDeAhorro(callClass:string = "",optionsClient:
       console.warn(err);
     });
   }
+

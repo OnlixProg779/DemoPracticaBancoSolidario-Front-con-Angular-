@@ -26,7 +26,7 @@ function CreatePlanAhorro(client, clientService, router, auxPase1) {
         .registerNewPlanAhorro(client)
         .subscribe(function (result) {
         if (result.status == 201) {
-            router.navigate(['/clients/list-client']);
+            router.navigate(['/bank/list-bills']);
         }
     }, function (err) {
         auxPase1 = uuid_1.v4();

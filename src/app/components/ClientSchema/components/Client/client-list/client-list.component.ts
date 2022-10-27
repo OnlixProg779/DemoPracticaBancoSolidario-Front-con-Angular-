@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChangeShowSourcePerPage } from 'src/app/shared/functions/functionsShared';
 import { GetSettingsService } from 'src/app/shared/service/get-settings.service';
 import { UtilsService } from 'src/app/shared/service/utils.service';
@@ -25,6 +26,8 @@ public color3: string = "btn btn-dark";
     private clientService: ClientService,
     private utilsService:UtilsService,
     private getSettingsService: GetSettingsService,
+    private router: Router,
+
   ) { 
     this.optionsClient = new OptionsClient();
   }
@@ -32,7 +35,7 @@ public color3: string = "btn btn-dark";
 
 
   ngOnInit(): void {
-    this.getSettingsService.settingsClients(this.optionsClient.showPerPage,"list-client").subscribe((result:Object) => {
+    this.getSettingsService.settingsClients(this.optionsClient.showPerPage,"list-client",this.router).subscribe((result:Object) => {
       this.optionsClient.settings = result;
     },(err => {
       console.warn(err);

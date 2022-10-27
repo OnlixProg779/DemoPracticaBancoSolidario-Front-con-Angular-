@@ -14,7 +14,7 @@ var multi_sel_component_1 = require("../multi-sel/multi-sel.component");
 var GetSettingsService = /** @class */ (function () {
     function GetSettingsService() {
     }
-    GetSettingsService.prototype.settingsClients = function (showPerPage, callTo) {
+    GetSettingsService.prototype.settingsClients = function (showPerPage, callTo, router) {
         return new rxjs_1.Observable(function (observer) {
             // var decoded: any = jwt_decode(sessionStorage.getItem('bearerToken')); // decodificamos para analizar el rol del usuario y asi asignar diferentes propiedades a la tabla
             var settings = null;
@@ -80,9 +80,36 @@ var GetSettingsService = /** @class */ (function () {
                         renderComponent: multi_sel_component_1.MultiSelComponent,
                         onComponentInitFunction: function (instance) {
                             instance.save.subscribe(function (item) {
-                                // console.log(item);
-                                // console.log(instance);
+                                console.log(item);
+                                console.log(instance);
                                 // this.router.navigate(['/clients/bills/' + item.entity.receivedBox.postBox.client.clientId]);
+                            });
+                        }
+                    },
+                    nuevaCuenta: {
+                        title: 'Nueva Cuenta',
+                        filter: false,
+                        type: 'custom',
+                        valuePrepareFunction: function (value, row, cell) {
+                            var sentData = new multi_sel_component_1.ResourceMultiSel();
+                            sentData.action = [];
+                            sentData.styl = [];
+                            sentData.stepClass = [];
+                            sentData.icon = [];
+                            if (row.active) {
+                                sentData.action.push("Crear cuenta");
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('background-color: #047aa2;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.8em 0.8em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                            }
+                            return sentData;
+                        },
+                        renderComponent: multi_sel_component_1.MultiSelComponent,
+                        onComponentInitFunction: function (instance) {
+                            instance.save.subscribe(function (item) {
+                                console.log(item);
+                                if (item.option == 'Crear cuenta') {
+                                    router.navigate(['/bank/create-account/' + item.entity.id]);
+                                }
                             });
                         }
                     },
@@ -140,10 +167,15 @@ var GetSettingsService = /** @class */ (function () {
                         },
                         renderComponent: multi_sel_component_1.MultiSelComponent,
                         onComponentInitFunction: function (instance) {
+                            instance.save.subscribe(function (item) {
+                                console.log(item);
+                                console.log(instance);
+                                // this.router.navigate(['/clients/bills/' + item.entity.receivedBox.postBox.client.clientId]);
+                            });
                         }
                     },
                     actions: {
-                        title: 'Actions',
+                        title: 'A',
                         filter: false,
                         type: 'custom',
                         valuePrepareFunction: function (value, row, cell) {
@@ -153,20 +185,29 @@ var GetSettingsService = /** @class */ (function () {
                             sentData.stepClass = [];
                             sentData.icon = [];
                             if (!row.active) {
-                                sentData.action.push("Deleted");
-                                sentData.stepClass.push('btn btn-outline col-12');
-                                sentData.styl.push('background-color: #de1e1e;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                                sentData.action.push("Restore");
+                                sentData.icon.push("rotate-ccw");
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:black;cursor: pointer;');
                             }
                             else {
-                                sentData.action.push("Edit");
-                                sentData.icon.push("codepen");
-                                sentData.stepClass.push('btn btn-outline col-12');
-                                sentData.styl.push('background-color: #1e7915;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                                sentData.action.push("Delete");
+                                sentData.icon.push("delete");
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:red;cursor: pointer;');
                             }
                             return sentData;
                         },
                         renderComponent: multi_sel_component_1.MultiSelComponent,
                         onComponentInitFunction: function (instance) {
+                            instance.save.subscribe(function (item) {
+                                console.log(item);
+                                if (item.option == 'Restore') {
+                                }
+                                if (item.option == 'Delete') {
+                                }
+                                // this.router.navigate(['/clients/bills/' + item.entity.receivedBox.postBox.client.clientId]);
+                            });
                         }
                     }
                 }
@@ -225,11 +266,48 @@ var GetSettingsService = /** @class */ (function () {
                     },
                     montoDeAhorro: {
                         title: 'montoDeAhorro',
-                        filter: false
+                        filter: false,
+                        valuePrepareFunction: function (value, row, cell) {
+                            return "$" + value;
+                        }
                     },
-                    tiempoPlanDeAhorroId: {
-                        title: 'tiempoPlanDeAhorro',
-                        filter: false
+                    location: {
+                        title: 'Info',
+                        filter: false,
+                        type: 'custom',
+                        valuePrepareFunction: function (value, row, cell) {
+                            var sentData = new multi_sel_component_1.ResourceMultiSel();
+                            sentData.action = [];
+                            sentData.styl = [];
+                            sentData.stepClass = [];
+                            sentData.icon = [];
+                            if (!row.active) {
+                                sentData.action.push("Interes " + row.tiempoPlanDeAhorro.tipoDeInteres);
+                                sentData.stepClass.push('btn btn-success');
+                                sentData.styl.push('background-color: red;text-transform: initial;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                                sentData.action.push("X " + row.tiempoPlanDeAhorro.meses + " meses");
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('background-color: red;text-transform: initial;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                                sentData.action.push(row.tiempoPlanDeAhorro.tasaDeInteresAnual + "% de interes anual");
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('background-color: red;text-transform: initial;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                            }
+                            else {
+                                sentData.action.push("Interes " + row.tiempoPlanDeAhorro.tipoDeInteres);
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('background-color: #4187d2;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                                sentData.action.push("X " + row.tiempoPlanDeAhorro.meses + " meses");
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('line-height: 1;text-transform: initial;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:dark;cursor: auto;');
+                                sentData.action.push(row.tiempoPlanDeAhorro.tasaDeInteresAnual + "% de interes anual");
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('line-height: 1;text-transform: initial;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 0.25rem;padding: 0.25em 0.4em;display:inline-block;font-size: 95%;color:dark;cursor: auto;');
+                            }
+                            return sentData;
+                        },
+                        renderComponent: multi_sel_component_1.MultiSelComponent,
+                        onComponentInitFunction: function (instance) {
+                        }
                     },
                     // nombre: {
                     //   title: 'Name',
@@ -312,7 +390,7 @@ var GetSettingsService = /** @class */ (function () {
                         }
                     },
                     actions: {
-                        title: 'Actions',
+                        title: 'A',
                         filter: false,
                         type: 'custom',
                         valuePrepareFunction: function (value, row, cell) {
@@ -322,20 +400,29 @@ var GetSettingsService = /** @class */ (function () {
                             sentData.stepClass = [];
                             sentData.icon = [];
                             if (!row.active) {
-                                sentData.action.push("Deleted");
-                                sentData.stepClass.push('btn btn-outline col-12');
-                                sentData.styl.push('background-color: #de1e1e;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                                sentData.action.push("Restore");
+                                sentData.icon.push("rotate-ccw");
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:black;cursor: pointer;');
                             }
                             else {
-                                sentData.action.push("Edit");
-                                sentData.icon.push("codepen");
-                                sentData.stepClass.push('btn btn-outline col-12');
-                                sentData.styl.push('background-color: #1e7915;line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:white;cursor: auto;');
+                                sentData.action.push("Delete");
+                                sentData.icon.push("delete");
+                                sentData.stepClass.push('btn btn-outline');
+                                sentData.styl.push('line-height: 1;text-align: center;white-space: nowrap;vertical-align: baseline;border-radius: 1rem;padding: 0.4em 0.4em;display:inline-block;font-size: 95%;color:red;cursor: pointer;');
                             }
                             return sentData;
                         },
                         renderComponent: multi_sel_component_1.MultiSelComponent,
                         onComponentInitFunction: function (instance) {
+                            instance.save.subscribe(function (item) {
+                                console.log(item);
+                                if (item.option == 'Restore') {
+                                }
+                                if (item.option == 'Delete') {
+                                }
+                                // this.router.navigate(['/clients/bills/' + item.entity.receivedBox.postBox.client.clientId]);
+                            });
                         }
                     }
                 }

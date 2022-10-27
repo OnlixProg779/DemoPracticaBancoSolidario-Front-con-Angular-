@@ -6,6 +6,7 @@ import { ClientsPaginParams, OptionsClient } from "../../models/Client/options-c
 import { v4 as uuidv4 } from 'uuid';
 import { Router } from "@angular/router";
 import { CreateClientCommand } from "../../models/Client/commands/create-client-command";
+import { ClientVm } from "../../models/Client/queries/client-vm";
 
 
 export function GetParamsClients(callClass:string = "",optionsClient: ClientsPaginParams): HttpParams {
@@ -45,6 +46,7 @@ export function GetParamsClients(callClass:string = "",optionsClient: ClientsPag
         // console.warn(err);
       });
   }
+
   
   export function GetClients(clientService: ClientService, optionsClient: OptionsClient, utilsService:UtilsService){
     GetClientsDb(clientService,optionsClient,utilsService,"GetAll");

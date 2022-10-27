@@ -3,7 +3,7 @@
   <ng-container>
     <div class="row m-0">
       <button class="font-weight-bolder m-1" type="button" [ngClass]="model.stepClass[i]"
-      (click)="onClick()" [style]="model.styl[i]">
+      (click)="onClick(model.action[i])" [style]="model.styl[i]">
         <ng-container *ngIf="model.icon[i]">
           <app-feather-icons  [icon]="model.icon[i]"></app-feather-icons>
         </ng-container>
