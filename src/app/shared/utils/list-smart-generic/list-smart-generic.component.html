@@ -1,0 +1,55 @@
+<div class="container-fluid p-0">
+  <div class="card">
+
+    <div class="card-header p-0">
+
+      <h5 *ngIf="tittle != null" class="p-l-40 p-t-25 p-b-10">{{tittle}}</h5>
+
+      <div class="col-xl-12 p-t-10">
+
+        <ng-content select="[button-show-filters]">
+        </ng-content>
+
+        <ng-content select="[form-filters]">
+        </ng-content>
+
+        <ng-content *ngIf="showQuickFilters" select="[form-quick-filters]">
+        </ng-content>
+
+        <ng-content *ngIf="showButtonSearchFilters" select="[button-form-filters]">
+        </ng-content>
+
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <div class="btn-popup pull-right">
+        <a class="btn btn-secondary" [routerLink]="'/clients/create-client'">Add Client</a>
+      </div>
+      <div id="batchDelete" class="category-table custom-datatable transcation-datatable">
+        <div class="table-responsive">
+          <div class="row">
+            <div class="flex-column p-2 text-dark pl-2 ml-2 font-weight-bold">
+              Total records: {{totalCount}} u | View:
+            </div>
+
+            <div class="form-group">
+              <select class="form-control form-control-sm" [(ngModel)]="showPerPage" (change)="changeSettingsTable()">
+                <option [ngValue]="15">15</option>
+                <option [ngValue]="5">5</option>
+                <option [ngValue]="3">3</option>
+              </select>
+            </div>
+
+
+          </div>
+          <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

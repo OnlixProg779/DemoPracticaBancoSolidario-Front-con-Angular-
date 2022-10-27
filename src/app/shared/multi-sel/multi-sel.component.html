@@ -1,0 +1,17 @@
+<!-- Cuando se lo encuentra -->
+<ng-container *ngFor="let item of model.action; let i=index">
+  <ng-container>
+    <div class="row m-0">
+      <button class="font-weight-bolder m-1" type="button" [ngClass]="model.stepClass[i]"
+      (click)="onClick()" [style]="model.styl[i]">
+        <ng-container *ngIf="model.icon[i]">
+          <app-feather-icons  [icon]="model.icon[i]"></app-feather-icons>
+        </ng-container>
+        <ng-container *ngIf="!model.icon[i]">
+          <span > {{model.action[i]}} </span> 
+        </ng-container>
+      </button>
+    </div>
+
+  </ng-container>
+</ng-container>

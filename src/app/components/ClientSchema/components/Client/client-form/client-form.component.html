@@ -1,0 +1,110 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card tab2-card">
+        <div class="card-header">
+          <h5> {{ renderValue }} </h5>
+        </div>
+        <div class="card-body tab2-card">
+          <form [formGroup]="accountForm" appAutoFocusInvalidInput (submit)="save()" id="ngFormClient"
+            class="needs-validation user-add">
+
+              <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-header pt-0">
+                        <h5>Account</h5>
+                      </div>
+
+                      <div class="  form-group">
+                        <label for="validationCustom1" class="col-form-label pt-0"><span>*</span> First
+                          Name</label>
+                        <input formControlName="nombre" class="form-control  " id="validationCustom1" type="text">
+                        <div *ngIf="accountForm.controls.nombre.touched && accountForm.controls.nombre.errors?.required"
+                          class="text text-danger row pl-4 pt-1">
+                          <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                          </app-feather-icons>
+                          <div>
+                            {{validatorService.getErrorField(accountForm,'nombre','First name')}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="  form-group">
+                        <label for="validationCustom2" class="col-form-label pt-0"><span>*</span>
+                          Last Name</label>
+                        <input formControlName="apellidos" class="form-control  " id="validationCustom2" type="text">
+                        <div
+                          *ngIf="accountForm.controls.apellidos.touched && accountForm.controls.apellidos.errors?.required"
+                          class="text text-danger row pl-4 pt-1">
+                          <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                          </app-feather-icons>
+                          <div>
+                            {{validatorService.getErrorField(accountForm,'apellidos','Last name')}}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="validationCustom10" class="col-form-label pt-0"><span
+                            style="color: rgba(0, 0, 0, 0);">·</span>
+                          Email</label>
+                        <input formControlName="email" class="form-control  " id="validationCustom10" type="email">
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-header pt-0">
+                        <h5>Details</h5>
+                      </div>
+
+                      <div class="  form-group">
+                        <label for="validationCustom8" class="col-form-label pt-0"><span>*</span>
+                          City</label>
+                        <input formControlName="city" class="form-control  " id="validationCustom8" type="text">
+                        <div *ngIf="accountForm.controls.city.touched && accountForm.controls.city.errors?.required"
+                          class="text text-danger row pl-4 pt-1">
+                          <app-feather-icons [icon]="'alert-circle'" class="align-items-center">
+                          </app-feather-icons>
+                          <div>
+                            {{validatorService.getErrorField(accountForm,'city','City')}}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="  form-group">
+                        <label for="validationCustom6" class="col-form-label pt-0"><span
+                            style="color: rgba(0, 0, 0, 0);">·</span>
+                          Phone</label>
+                        <input formControlName="phone" class="form-control  " id="validationCustom6" type="text">
+                      </div>
+
+
+                      <div class="  form-group">
+                        <label for="validationCustom3" class="col-form-label pt-0"><span
+                            style="color: rgba(0, 0, 0, 0);">·</span>
+                          Instagram</label>
+                        <input formControlName="instagram" class="form-control  " id="validationCustom3" type="text">
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+          </form>
+
+          <div class="pull-right">
+            <button type="submit" form="ngFormClient" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Container-fluid Ends-->

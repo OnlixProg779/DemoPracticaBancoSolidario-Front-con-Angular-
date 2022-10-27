@@ -1,0 +1,46 @@
+<app-list-smart-generic [settings]="optionsClient.settings" 
+  [tittle]="'Client Details'"
+  [source]="optionsClient.source"
+  [totalCount]="optionsClient.totalCount" [showPerPage]="optionsClient.showPerPage" 
+  (changeShowPerPage)="changeShowPerPage($event)">
+
+  <ng-container button-show-filters>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body " style="padding: 0 2em;">
+            <button (click)="showFiltersParticularAction()" [class]="color1">Filters Particular</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body " style="padding: 0 2em;">
+            <button (click)="showFiltersGenericsClientAction()" [class]="color3">Generic Client</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-container form-filters>
+    <app-filters-client-form [showFiltersParticular]="showFiltersParticular"
+       [showFiltersGenericsClient]="showFiltersGenericsClient"
+      [optionsClient]="optionsClient"></app-filters-client-form>
+  </ng-container>
+
+  <ng-container form-quick-filters>
+    <app-form-search-filter [paginationBase]="optionsClient"></app-form-search-filter>
+  </ng-container>
+
+  <ng-container button-form-filters>
+    <div class="card-body " style="padding: 0 2em;">
+      <button (click)="searchData()" class="btn btn-info">Search</button>
+      <button  (click)="resetParams()" class="btn btn-dark ml-2">Reset</button>
+    </div>
+  </ng-container>
+
+</app-list-smart-generic>
