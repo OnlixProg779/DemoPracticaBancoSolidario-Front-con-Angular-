@@ -1,7 +1,6 @@
 <app-list-smart-generic [settings]="optionsBill.settings" 
   [tittle]="'Client Details'"
   [source]="optionsBill.source"
-  [routeCreate]="'/bank/create-account'"
   [totalCount]="optionsBill.totalCount" [showPerPage]="optionsBill.showPerPage" 
   (changeShowPerPage)="changeShowPerPage($event)">
 
@@ -45,3 +44,6 @@
   </ng-container>
 
 </app-list-smart-generic>
+
+<app-form-create-cuenta-ahorro [planAhorro]="clientSelected"></app-form-create-cuenta-ahorro>
+

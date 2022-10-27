@@ -20,7 +20,8 @@
                 <h4 class="p-3"><span style="color: red;">*</span> $ Monto de Ahorro</h4>
               </div>
               <div class="form-group col-sm-12 pl-3 pr-3">
-                <input [(ngModel)]="ahorroCuenta.montoDeAhorro" (keyup)="filterNumber.next($event.target.value)" class="form-control" type="number" min="100">
+                <input *ngIf="bloquear" [disabled]="true" [(ngModel)]="ahorroCuenta.montoDeAhorro" (keyup)="filterNumber.next($event.target.value)" class="form-control" type="number" min="100">
+                <input *ngIf="!bloquear" [disabled]="false" [(ngModel)]="ahorroCuenta.montoDeAhorro" (keyup)="filterNumber.next($event.target.value)" class="form-control" type="number" min="100">
               </div>
             </div>
             <div class="col-md-6">
@@ -29,18 +30,25 @@
               </div>
               <div class="form-group col-sm-12 pl-3 pr-3">
 
-                <select [(ngModel)]="ahorroCuenta.tiempoPlanDeAhorroId" class="form-control"
+                <select *ngIf="bloquear" [disabled]="true" [(ngModel)]="ahorroCuenta.tiempoPlanDeAhorroId" class="form-control"
                   (ngModelChange)="onChangeCompany($event)">
                   <option *ngFor="let c of arrayTiempoPlanDeAhorro" [ngValue]="c.id">Interes: {{c.tipoDeInteres}} x
                     {{c.meses}}M al {{c.tasaDeInteresAnual}}% Anual</option>
 
                 </select>
 
+                <select *ngIf="!bloquear" [disabled]="false" [(ngModel)]="ahorroCuenta.tiempoPlanDeAhorroId" class="form-control"
+                (ngModelChange)="onChangeCompany($event)">
+                <option *ngFor="let c of arrayTiempoPlanDeAhorro" [ngValue]="c.id">Interes: {{c.tipoDeInteres}} x
+                  {{c.meses}}M al {{c.tasaDeInteresAnual}}% Anual</option>
+
+              </select>
+
               </div>
             </div>
           </div>
 
-          <div class="pull-right p-3">
+          <div class="pull-right p-3" *ngIf="!bloquear">
             <button (click)="save()" type="button" class="btn btn-primary">Save</button>
           </div>
 

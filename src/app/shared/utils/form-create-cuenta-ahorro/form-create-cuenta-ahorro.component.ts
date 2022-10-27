@@ -6,6 +6,7 @@ import { debounceTime } from 'rxjs/operators';
 import { CreatePlanAhorro } from 'src/app/components/BankSchema/functions/PlanAhorro/PlanAhorroFunctions';
 import { CreatePlanAhorroCommand } from 'src/app/components/BankSchema/models/Bill/commands/create-plan-ahorro-command';
 import { OptionsBill } from 'src/app/components/BankSchema/models/Bill/options-bill';
+import { PlanAhorroVm } from 'src/app/components/BankSchema/models/Bill/queries/plan-ahorro-vm';
 import { TiempoPlanDeAhorroVm } from 'src/app/components/BankSchema/models/TypeBill/queries/tiempo-plan-de-ahorro-vm';
 import { BillService } from 'src/app/components/BankSchema/services/bill.service';
 import { TypeBillService } from 'src/app/components/BankSchema/services/type-bill.service';
@@ -31,9 +32,29 @@ export class FormCreateCuentaAhorroComponent implements OnInit {
   public optionsBill: OptionsBill = new OptionsBill();
 
   @Input()
+  public planAhorro: PlanAhorroVm;
+
+
   public clientDto: ClientVm;
 
   public ahorroCuenta: CreatePlanAhorroCommand = null;
+
+  public bloquear: boolean = false;
+
+ngOnChanges(changes: SimpleChanges): void {
+  //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+  //Add '${implements OnChanges}' to the class.
+  if(changes.planAhorro.currentValue != null){
+    var aux: PlanAhorroVm = changes.planAhorro.currentValue;
+
+    this.clientDto = aux.clientRemote;
+    this.ahorroCuenta.montoDeAhorro = aux.montoDeAhorro;
+    this.ahorroCuenta.tiempoPlanDeAhorroId = aux.tiempoPlanDeAhorroId;
+    this.bloquear = true;
+    this.calcularInteresNominal(aux.montoDeAhorro,aux.tiempoPlanDeAhorro);
+
+  }
+}
 
   constructor(
     private router: Router,
@@ -44,6 +65,9 @@ export class FormCreateCuentaAhorroComponent implements OnInit {
 
   ) { 
     activatedRouter.params.subscribe((params) => {
+      this.ahorroCuenta = new CreatePlanAhorroCommand();
+      this.getTiemposDePlanDeAhorro();
+
       if(params.id){
         let params2: HttpParams = new HttpParams();
 
@@ -56,15 +80,18 @@ export class FormCreateCuentaAhorroComponent implements OnInit {
           if (result.status == 201) {
   
             this.clientDto = result.body
-  
+  console.log(this.clientDto)
           }
         }, (err: HttpErrorResponse) => {
           console.warn(err);
         });    
       }
+      else if(params.id == undefined){
+
+        
+      }
       });
-    this.ahorroCuenta = new CreatePlanAhorroCommand();
-    this.getTiemposDePlanDeAhorro();
+
 
   }
 

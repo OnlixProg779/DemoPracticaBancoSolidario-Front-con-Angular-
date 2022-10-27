@@ -29,7 +29,10 @@ var FormCreateCuentaAhorroComponent = /** @class */ (function () {
         this.auxPase1 = uuid_1.v4();
         this.optionsBill = new options_bill_1.OptionsBill();
         this.ahorroCuenta = null;
+        this.bloquear = false;
         activatedRouter.params.subscribe(function (params) {
+            _this.ahorroCuenta = new create_plan_ahorro_command_1.CreatePlanAhorroCommand();
+            _this.getTiemposDePlanDeAhorro();
             if (params.id) {
                 var params2 = new http_1.HttpParams();
                 clientService
@@ -37,15 +40,28 @@ var FormCreateCuentaAhorroComponent = /** @class */ (function () {
                     .subscribe(function (result) {
                     if (result.status == 201) {
                         _this.clientDto = result.body;
+                        console.log(_this.clientDto);
                     }
                 }, function (err) {
                     console.warn(err);
                 });
             }
+            else if (params.id == undefined) {
+            }
         });
-        this.ahorroCuenta = new create_plan_ahorro_command_1.CreatePlanAhorroCommand();
-        this.getTiemposDePlanDeAhorro();
     }
+    FormCreateCuentaAhorroComponent.prototype.ngOnChanges = function (changes) {
+        //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+        //Add '${implements OnChanges}' to the class.
+        if (changes.planAhorro.currentValue != null) {
+            var aux = changes.planAhorro.currentValue;
+            this.clientDto = aux.clientRemote;
+            this.ahorroCuenta.montoDeAhorro = aux.montoDeAhorro;
+            this.ahorroCuenta.tiempoPlanDeAhorroId = aux.tiempoPlanDeAhorroId;
+            this.bloquear = true;
+            this.calcularInteresNominal(aux.montoDeAhorro, aux.tiempoPlanDeAhorro);
+        }
+    };
     FormCreateCuentaAhorroComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.filterNumber.pipe(operators_1.debounceTime(1000)).subscribe(function (input) {
@@ -118,7 +134,7 @@ var FormCreateCuentaAhorroComponent = /** @class */ (function () {
     };
     __decorate([
         core_1.Input()
-    ], FormCreateCuentaAhorroComponent.prototype, "clientDto");
+    ], FormCreateCuentaAhorroComponent.prototype, "planAhorro");
     FormCreateCuentaAhorroComponent = __decorate([
         core_1.Component({
             selector: 'app-form-create-cuenta-ahorro',

@@ -91,7 +91,7 @@ export class ClientService extends HandleErrorsHttp {
 
     headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Accept: environment.mediaTypes.client.getUnique.accept.getClientJson,
+      Accept: 'application/json',
       'If-None-Match': `"${eTag}"`,
     });
 

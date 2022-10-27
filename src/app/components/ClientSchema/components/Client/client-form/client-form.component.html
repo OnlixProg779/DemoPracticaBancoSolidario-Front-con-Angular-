@@ -38,7 +38,7 @@
                       <div class="  form-group">
                         <label for="validationCustom8" class="col-form-label pt-0"><span>*</span>
                           C.I.</label>
-                        <input formControlName="cedula" class="form-control  " id="validationCustom8" type="number">
+                        <input formControlName="cedula" class="form-control" id="validationCustom8" type="number" max="10">
                         <div *ngIf="accountForm.controls.cedula.touched && accountForm.controls.cedula.errors?.required"
                           class="text text-danger row pl-4 pt-1">
                           <app-feather-icons [icon]="'alert-circle'" class="align-items-center">

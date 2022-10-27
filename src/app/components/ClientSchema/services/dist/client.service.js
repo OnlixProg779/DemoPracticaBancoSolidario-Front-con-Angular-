@@ -74,7 +74,7 @@ var ClientService = /** @class */ (function (_super) {
         eTag = localStorage.getItem('If-None-Match-get------');
         headers = new http_1.HttpHeaders({
             'Content-Type': 'application/json',
-            Accept: environment_1.environment.mediaTypes.client.getUnique.accept.getClientJson,
+            Accept: 'application/json',
             'If-None-Match': "\"" + eTag + "\""
         });
         return this.http
